@@ -18,30 +18,8 @@
 Hey! I’m Aryan Sharma, a backend-focused developer who loves building APIs, solving problems with Java & Spring Boot, and learning new tools to level up every day
 
 
-<!-- Social Media -->
-<h3 align="left">Connect with me:</h3>
 
-<p align="left" style="display:flex; gap:10px;">
-  
-  <a href="https://github.com/a-r-y-a-nn" target="blank">
-    <img src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/github.svg" height="30" width="40" />
-  </a>
-
-  <a href="https://x.com/Aryan4229" target="blank">
-    <img src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/twitter.svg" height="30" width="40" />
-  </a>
-
-  <a href="https://www.linkedin.com/in/aryansharma4/" target="blank">
-    <img src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" height="30" width="40" />
-  </a>
-
-  <a href="https://www.quora.com/profile/Aryan-Sharma-348" target="blank">
-    <img src="https://cdn.simpleicons.org/quora" height="30" width="40" />
-  </a>
-</p>
-
-
-## 🌐 Socials:
+## 🌐 Connect with me:
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://linkedin.com/in/https://www.linkedin.com/in/aryansharma4/) [![Quora](https://img.shields.io/badge/Quora-%23B92B27.svg?logo=Quora&logoColor=white)](https://quora.com/profile/https://www.quora.com/profile/Aryan-Sharma-348) [![X](https://img.shields.io/badge/X-black.svg?logo=X&logoColor=white)](https://x.com/https://x.com/Aryan4229) [![email](https://img.shields.io/badge/Email-D14836?logo=gmail&logoColor=white)](mailto:aryansharma4229@gmail.com) 
 
 # 💻 Tech Stack:
