@@ -22,6 +22,7 @@ Hey! I’m Aryan Sharma, a backend-focused developer who loves building APIs, so
 <h3 align="left">Connect with me:</h3>
 
 <p align="left" style="display:flex; gap:10px;">
+  
   <a href="https://github.com/a-r-y-a-nn" target="blank">
     <img src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/github.svg" height="30" width="40" />
   </a>
