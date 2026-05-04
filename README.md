@@ -1,39 +1,89 @@
-<!-- Your Info. -->
-<h1 align="center">Hi 👋, I'm Aryan Sharma</h1>
-<h3 align="center">A Backend Developer from India</h3>
+# Valura AI — Team Lead Project Assignment
 
-<!-- Programmer GIF -->
-<img align="right" alt="Coding" width="400" src="https://cdn.dribbble.com/users/1162077/screenshots/3848914/programmer.gif">
+AI agent ecosystem that helps a novice investor build, monitor, grow, and protect a portfolio.
 
-- 🌱 I’m currently learning **DevOps**
+## What this implements
+- Multi-agent orchestration for:
+  - Planning (`PlannerAgent`)
+  - Monitoring (`MonitorAgent`)
+  - Risk guardrails (`GuardrailAgent`)
+  - Rebalancing actions (`RebalanceAgent`)
+- SSE streaming output (`POST /advice/stream`) with stage-by-stage events.
+- API-first workflow to store investor profile + portfolio.
+- Mock-first LLM integration so tests pass without an API key.
 
-- 💬 Ask me about **RestAPI, Dependencies**
+## Tech Stack
+- Python + FastAPI
+- SSE via `sse-starlette`
+- Pydantic / pydantic-settings
+- `httpx` for OpenAI Responses API integration
+- `pytest` + `pytest-asyncio`
 
-- 📫 How to reach me **aryansharma4229@gmail.com**
+## Persistence choice
+I chose **in-memory persistence** for this submission.
 
-- ⚡ Fun fact **I am Funny**
+Why:
+1. Zero external infra and fastest evaluator setup.
+2. Deterministic behavior for tests.
+3. Keeps focus on agent architecture and streaming protocol.
 
+Tradeoff:
+- Data is volatile (resets on process restart).
 
-# 💫 About Me:
-Hey! I’m Aryan Sharma, a backend-focused developer who loves building APIs, solving problems with Java & Spring Boot, and learning new tools to level up every day
+## Project Structure
+- `src/main.py` — app factory + endpoints
+- `src/service.py` — orchestration service
+- `src/agents.py` — specialized investing agents
+- `src/models.py` — request/response and domain models
+- `src/repository.py` — in-memory persistence
+- `src/llm.py` — mock + OpenAI-backed client
+- `src/config.py` — env configuration
+- `tests/` — API and service tests
 
+## Setup
+```bash
+python -m venv venv
+source venv/bin/activate  # Linux/macOS
+# venv\Scripts\activate  # Windows
+pip install -r requirements.txt
+cp .env.example .env
+```
 
+## Required environment variables
+- `USE_MOCK_LLM` (`true`/`false`) — **required for predictable mode selection**.
+- `MODEL` — model name used when `USE_MOCK_LLM=false`.
 
-## 🌐 Connect with me:
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://linkedin.com/in/https://www.linkedin.com/in/aryansharma4/) [![Quora](https://img.shields.io/badge/Quora-%23B92B27.svg?logo=Quora&logoColor=white)](https://quora.com/profile/https://www.quora.com/profile/Aryan-Sharma-348) [![X](https://img.shields.io/badge/X-black.svg?logo=X&logoColor=white)](https://x.com/https://x.com/Aryan4229) [![email](https://img.shields.io/badge/Email-D14836?logo=gmail&logoColor=white)](mailto:aryansharma4229@gmail.com) 
+## Optional environment variables
+- `OPENAI_API_KEY` — required only when `USE_MOCK_LLM=false`.
+- `DATABASE_URL` — reserved for future persistent storage backend.
 
-# 💻 Tech Stack:
-![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white) ![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white) ![Hibernate](https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=Hibernate&logoColor=white) ![Apache Tomcat](https://img.shields.io/badge/apache%20tomcat-%23F8DC75.svg?style=for-the-badge&logo=apache-tomcat&logoColor=black) ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white) ![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white) ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white) ![Jira](https://img.shields.io/badge/jira-%230A0FFF.svg?style=for-the-badge&logo=jira&logoColor=white) ![Swagger](https://img.shields.io/badge/-Swagger-%23Clojure?style=for-the-badge&logo=swagger&logoColor=white) ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![C](https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white)
+## Run
+```bash
+uvicorn src.main:app --reload
+```
 
-# 📊 GitHub Stats:
-![](https://github-readme-stats.vercel.app/api?username=a-r-y-a-nn&theme=dark&hide_border=false&include_all_commits=false&count_private=false)<br/>
-![](https://nirzak-streak-stats.vercel.app/?user=a-r-y-a-nn&theme=dark&hide_border=false)<br/>
-![](https://github-readme-stats.vercel.app/api/top-langs/?username=a-r-y-a-nn&theme=dark&hide_border=false&include_all_commits=false&count_private=false&layout=compact)
+## API Endpoints
+- `GET /health`
+- `POST /profiles`
+- `POST /portfolios`
+- `POST /advice/stream` (SSE)
 
-### ✍️ Random Dev Quotee.v
-![Readme Quotes](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=dark)
+### SSE demo
+```bash
+curl -N -X POST http://127.0.0.1:8000/advice/stream \
+  -H "Content-Type: application/json" \
+  -d '{"user_id":"u1","question":"How should I improve my portfolio?"}'
+```
 
-### 🔝 Top Contributed Repo
-![](https://github-contributor-stats.vercel.app/api?username=a-r-y-a-nn&limit=5&theme=dark&combine_all_yearly_contributions=true)
+## Test
+```bash
+pytest tests/ -v
+```
 
-<!-- Proudly created with GPRM ( https://gprm.itsvg.in ) -->
+## Non-obvious decisions
+1. Added an app factory (`create_app`) to keep startup dependency wiring explicit and test-friendly.
+2. Kept LLM integration behind a lightweight protocol (`LLMClient`) for easy mocking/substitution.
+3. Streaming emits named SSE events (`planner`, `monitor`, `guardrail`, `rebalancer`, `advisor`, `done`) so clients can render workflow progress in real time.
+
+## Defence video (≤10 min)
+- https://example.com/valura-defence-video
